@@ -30,14 +30,15 @@ public class MovieRatingController {
             return "movie_rating_form";
         }
         movieRatingRepository.save(movieRating);
-        Iterable<MovieRating> movieRatings = movieRatingRepository.findAll();
+        Iterable<MovieRating> movieRatings = movieRatingRepository
+                .findAll();
         model.addAttribute("movieRatings", movieRatings);
         return "movie_rating_show";
     }
 
     @GetMapping("/movies")
     public String getMovieRatings(Model model) {
-        Iterable<MovieRating> movieRatings = movieRatingRepository.findAll();
+        Iterable<MovieRating> movieRatings = movieRatingRepository.findByOrderByDateDesc();
         model.addAttribute("movieRatings", movieRatings);
         return "movie_rating_list";
     }
