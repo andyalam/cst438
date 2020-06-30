@@ -1,6 +1,7 @@
 package com.example.hw1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +39,7 @@ public class MovieRatingController {
 
     @GetMapping("/movies")
     public String getMovieRatings(Model model) {
-        Iterable<MovieRating> movieRatings = movieRatingRepository.findByOrderByDateDesc();
+        Iterable<MovieRating> movieRatings = movieRatingRepository.findAllMovieRatingsOrderByTitleDateDesc();
         model.addAttribute("movieRatings", movieRatings);
         return "movie_rating_list";
     }
