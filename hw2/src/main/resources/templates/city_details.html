@@ -5,6 +5,42 @@
     <title>City Details</title>
 </head>
 <body>
-Name: <span th:inline="text">[[${cityInfo.name}]]</span><br />
+    <h2>City</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>ID</td>
+                <td>[[${cityInfo.id}]]</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>[[${cityInfo.name}]]</td>
+            </tr>
+            <tr>
+                <td>Country Code</td>
+                <td>[[${cityInfo.countryCode}]]</td>
+            </tr>
+            <tr>
+                <td>Country Name</td>
+                <td>[[${cityInfo.countryName}]]</td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td>[[${cityInfo.district}]]</td>
+            </tr>
+            <tr>
+                <td>Population</td>
+                <td>[[${cityInfo.population}]]</td>
+            </tr>
+            <tr>
+                <td>Local Weather</td>
+                <td>[[${cityInfo.temp}]]</td>
+            </tr>
+            <tr>
+                <td>Local Time</td>
+                <td>[[${cityInfo.time}]]</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

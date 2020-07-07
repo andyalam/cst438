@@ -10,6 +10,8 @@ public class CityInfo {
 	 int population;
 	 double temp;
 	 String time;
+
+	 public CityInfo() {}
 	 
 	 public CityInfo(City city, String countryName, double temp, String time) {
 		 this.id = city.getId();
@@ -148,6 +150,6 @@ public class CityInfo {
 		return "CityInfo [id=" + id + ", name=" + name + ", countryCode=" + countryCode + ", countryName=" + countryName
 				+ ", district=" + district + ", population=" + population + ", temp=" + temp + ", time=" + time + "]";
 	}
-	 
-	 
+
+
 }

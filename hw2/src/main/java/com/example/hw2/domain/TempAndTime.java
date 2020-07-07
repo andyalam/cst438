@@ -6,7 +6,7 @@ public class TempAndTime {
 	public int timezone;
 	
 	public TempAndTime(double temp, long time, int timezone){
-		this.temp = temp;
+		this.temp = (temp - 273.15) * 9.0/5.0 + 32.0;
 		this.time = time;
 		this.timezone = timezone;
 	}

@@ -27,11 +27,17 @@ public class CityService {
 	private WeatherService weatherService;
 	
 	public CityInfo getCityInfo(String cityName) {
-		City city = cityRepository.findByName(cityName).get(0);
+		List<City> cities = cityRepository.findByName(cityName);
+		if (cities.size() < 1) {
+			return null;
+		}
+
+		City city = cities.get(0);
 		Country country = countryRepository.findByCode(city.getCountryCode());
 		TempAndTime tempAndTime = weatherService.getTempAndTime(cityName);
+		String time = Long.toString(tempAndTime.time);
 
-		return new CityInfo(city, country.getName(), tempAndTime.temp, "time_here");
+		return new CityInfo(city, country.getName(), tempAndTime.temp, time);
 	}
 	
 }
