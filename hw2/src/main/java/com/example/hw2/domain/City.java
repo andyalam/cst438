@@ -1,6 +1,7 @@
 package com.example.hw2.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
@@ -68,6 +69,22 @@ public class City {
 				+ "]";
 	}
 	
-	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		City c = (City) o;
+
+		return id == c.id &&
+			population == c.population &&
+			Objects.equals(district, c.district) &&
+			Objects.equals(name, c.name) &&
+			Objects.equals(countryCode, c.countryCode);
+	}
 
 }
