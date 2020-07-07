@@ -35,9 +35,9 @@ public class CityService {
 		City city = cities.get(0);
 		Country country = countryRepository.findByCode(city.getCountryCode());
 		TempAndTime tempAndTime = weatherService.getTempAndTime(cityName);
-		String time = Long.toString(tempAndTime.time);
+		String time = Long.toString(tempAndTime.getTime());
 
-		return new CityInfo(city, country.getName(), tempAndTime.temp, time);
+		return new CityInfo(city, country.getName(), tempAndTime.getTemp(), time);
 	}
 	
 }
