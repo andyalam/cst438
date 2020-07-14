@@ -8,6 +8,8 @@ import java.util.TimeZone;
 import com.example.hw2.domain.CityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,12 @@ public class CityService {
 	
 	@Autowired
 	private WeatherService weatherService;
+
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+
+	@Autowired
+	private FanoutExchange fanoutExchange;
 	
 	public CityInfo getCityInfo(String cityName) {
 		List<City> cities = cityRepository.findByName(cityName);
@@ -38,6 +46,21 @@ public class CityService {
 		String time = Long.toString(tempAndTime.getTime());
 
 		return new CityInfo(city, country.getName(), tempAndTime.getTemp(), time);
+	}
+
+	public void requestReservation(
+			String cityName,
+			String level,
+			String email) {
+		String msg = "{\"cityName\": \""+ cityName +
+				"\" \"level\": \""+level+
+				"\" \"email\": \""+email+"\"}" ;
+		System.out.println("Sending message:"+msg);
+		rabbitTemplate.convertSendAndReceive(
+				fanoutExchange.getName(),
+				"",
+// routing key none.
+				msg);
 	}
 	
 }
