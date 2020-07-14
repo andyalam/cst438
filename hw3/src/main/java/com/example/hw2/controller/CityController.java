@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.hw2.domain.*;
 import com.example.hw2.service.CityService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CityController {
@@ -20,6 +22,19 @@ public class CityController {
 		CityInfo cityInfo = cityService.getCityInfo(cityName);
 		model.addAttribute("cityInfo", cityInfo);
 		return "city_details";
-	} 
+	}
+
+	@PostMapping("/cities/reservation")
+	public String createReservation(
+			@RequestParam("city") String cityName,
+			@RequestParam("level") String level,
+			@RequestParam("email") String email,
+			Model model) {
+		model.addAttribute("city", cityName);
+		model.addAttribute("level", level);
+		model.addAttribute("email", email);
+//		cityService.requestReservation(cityName, level, email);
+		return "request_reservation";
+	}
 	
 }
